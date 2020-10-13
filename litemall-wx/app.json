@@ -43,12 +43,13 @@
     "pages/ucenter/aftersaleDetail/aftersaleDetail"
   ],
   "window": {
-    "navigationBarBackgroundColor": "#FFFFFF",
-    "navigationBarTitleText": "litemall小程序商城",
+    "navigationBarBackgroundColor": "#F0F1F2",
+    "navigationBarTitleText": "金色商城",
     "enablePullDownRefresh": false,
     "navigationBarTextStyle": "black",
     "backgroundColor": "#FFFFFF",
     "backgroundTextStyle": "dark"
+    
   },
   "tabBar": {
     "backgroundColor": "#fafafa",
@@ -78,7 +79,7 @@
         "pagePath": "pages/ucenter/index/index",
         "iconPath": "static/images/my.png",
         "selectedIconPath": "static/images/my@selected.png",
-        "text": "个人"
+        "text": "我的"
       }
     ]
   },

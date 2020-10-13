@@ -2,7 +2,7 @@
   "name": "litemall-admin",
   "version": "1.0.0",
   "description": "litemall-admin basing on vue-element-admin 4.3.0",
-  "author": "linlinjava <linlinjava@163.com>",
+  "author": "lxs <lxs100865@163.com>",
   "license": "MIT",
   "scripts": {
     "dev": "vue-cli-service serve",
@@ -102,3 +102,4 @@
     "last 2 versions"
   ]
 }
+

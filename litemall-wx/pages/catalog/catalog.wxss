@@ -136,18 +136,20 @@ page {
 .catalog .bd .item {
   display: block;
   float: left;
-  height: 216rpx;
-  width: 144rpx;
-  margin-right: 34rpx;
+  height: 180rpx;
+  width: 232rpx;
+  margin-right: 30rpx;
 }
 
-.catalog .bd .item.last {
+/* .catalog .bd .item.last {
   margin-right: 0;
-}
+} */
 
 .catalog .bd .item .icon {
-  height: 144rpx;
-  width: 144rpx;
+  /* height: 144rpx;
+  width: 144rpx; */
+  height: 100rpx;
+  width: 232rpx;
 }
 
 .catalog .bd .item .txt {
@@ -155,6 +157,6 @@ page {
   text-align: center;
   font-size: 24rpx;
   color: #333;
-  height: 72rpx;
-  width: 144rpx;
+  height: 50rpx;
+  width: 232rpx;
 }

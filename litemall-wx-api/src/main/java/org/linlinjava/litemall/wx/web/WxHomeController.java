@@ -14,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.validation.constraints.NotNull;
@@ -53,6 +54,9 @@ public class WxHomeController {
     @Autowired
     private LitemallCouponService couponService;
 
+    @Autowired
+    private LitemallPartnerService partnerService;
+
     private final static ArrayBlockingQueue<Runnable> WORK_QUEUE = new ArrayBlockingQueue<>(9);
 
     private final static RejectedExecutionHandler HANDLER = new ThreadPoolExecutor.CallerRunsPolicy();
@@ -76,7 +80,10 @@ public class WxHomeController {
      * @return 首页数据
      */
     @GetMapping("/index")
-    public Object index(@LoginUser Integer userId) {
+    public Object index(@LoginUser Integer userId,
+                        @RequestParam(defaultValue = "0") String  lng,
+                        @RequestParam(defaultValue = "0") String lat
+                        ) {
         //优先从缓存中读取
         if (HomeCacheManager.hasData(HomeCacheManager.INDEX)) {
             return ResponseUtil.ok(HomeCacheManager.getCacheData(HomeCacheManager.INDEX));
@@ -106,6 +113,9 @@ public class WxHomeController {
         //团购专区
         Callable<List> grouponListCallable = () -> grouponService.queryList(0, 5);
 
+        //合作商（附近商家）
+        Callable<List> partnerListCallable = () -> partnerService.queryIndex( lat,  lng,0, SystemConfig.getPartnerLimit());
+
         Callable<List> floorGoodsListCallable = this::getCategoryList;
 
         FutureTask<List> bannerTask = new FutureTask<>(bannerListCallable);
@@ -117,6 +127,7 @@ public class WxHomeController {
         FutureTask<List> topicListTask = new FutureTask<>(topicListCallable);
         FutureTask<List> grouponListTask = new FutureTask<>(grouponListCallable);
         FutureTask<List> floorGoodsListTask = new FutureTask<>(floorGoodsListCallable);
+        FutureTask<List> partnerListCallableTask = new FutureTask<>(partnerListCallable);
 
         executorService.submit(bannerTask);
         executorService.submit(channelTask);
@@ -127,6 +138,7 @@ public class WxHomeController {
         executorService.submit(topicListTask);
         executorService.submit(grouponListTask);
         executorService.submit(floorGoodsListTask);
+        executorService.submit(partnerListCallableTask);
 
         Map<String, Object> entity = new HashMap<>();
         try {
@@ -139,6 +151,7 @@ public class WxHomeController {
             entity.put("topicList", topicListTask.get());
             entity.put("grouponList", grouponListTask.get());
             entity.put("floorGoodsList", floorGoodsListTask.get());
+            entity.put("partnerList", partnerListCallableTask.get());
             //缓存数据
             HomeCacheManager.loadData(HomeCacheManager.INDEX, entity);
         }

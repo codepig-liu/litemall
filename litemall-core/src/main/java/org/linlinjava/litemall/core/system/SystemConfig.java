@@ -16,6 +16,7 @@ public class SystemConfig {
     public final static String LITEMALL_WX_INDEX_CATLOG_LIST = "litemall_wx_catlog_list";
     public final static String LITEMALL_WX_INDEX_CATLOG_GOODS = "litemall_wx_catlog_goods";
     public final static String LITEMALL_WX_SHARE = "litemall_wx_share";
+    public final static String LITEMALL_WX_INDEX_PARTNER = "litemall_wx_index_partner";
     // 运费相关配置
     public final static String LITEMALL_EXPRESS_FREIGHT_VALUE = "litemall_express_freight_value";
     public final static String LITEMALL_EXPRESS_FREIGHT_MIN = "litemall_express_freight_min";
@@ -56,6 +57,10 @@ public class SystemConfig {
 
     public static Integer getHotLimit() {
         return getConfigInt(LITEMALL_WX_INDEX_HOT);
+    }
+
+    public static Integer getPartnerLimit() {
+        return getConfigInt(LITEMALL_WX_INDEX_PARTNER);
     }
 
     public static Integer getBrandLimit() {

@@ -305,6 +305,16 @@ export const asyncRoutes = [
         }
       },
       {
+        path: 'partner',
+        component: () => import('@/views/promotion/partner'),
+        name: 'partner',
+        meta: {
+          perms: ['GET /admin/partner/list', 'POST /admin/partner/create', 'GET /admin/partner/read', 'POST /admin/partner/update', 'POST /admin/partner/delete'],
+          title: '合作商管理',
+          noCache: true
+        }
+      },
+      {
         path: 'coupon',
         component: () => import('@/views/promotion/coupon'),
         name: 'coupon',

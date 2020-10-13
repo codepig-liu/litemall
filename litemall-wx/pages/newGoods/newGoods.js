@@ -6,7 +6,7 @@ Page({
   data: {
     bannerInfo: {
       'imgUrl': '/static/images/new.png',
-      'name': '大家都在买的'
+      'name': '新品首发 好产品重磅来袭'
     },
     categoryFilter: false,
     filterCategory: [],

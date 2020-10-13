@@ -54,7 +54,7 @@
         <template slot-scope="scope">{{ scope.row.status | formatStatus }}</template>
       </el-table-column>
 
-      <el-table-column align="center" label="操作" width="300" class-name="small-padding fixed-width">
+      <el-table-column align="center" label="操作" width="280" class-name="small-padding fixed-width">
         <template slot-scope="scope">
           <el-button v-permission="['GET /admin/coupon/read']" type="primary" size="mini" @click="handleDetail(scope.row)">详情</el-button>
           <el-button v-permission="['POST /admin/coupon/update']" type="info" size="mini" @click="handleUpdate(scope.row)">编辑</el-button>

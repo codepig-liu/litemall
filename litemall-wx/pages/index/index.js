@@ -16,13 +16,14 @@ Page({
     banner: [],
     channel: [],
     coupon: [],
+    partners: [],
     goodsCount: 0
   },
 
   onShareAppMessage: function() {
     return {
-      title: 'litemall小程序商场',
-      desc: '开源微信小程序商城',
+      title: '金色商场',
+      desc: '金色小程序商城',
       path: '/pages/index/index'
     }
   },
@@ -47,7 +48,8 @@ Page({
           banner: res.data.banner,
           groupons: res.data.grouponList,
           channel: res.data.channel,
-          coupon: res.data.couponList
+          coupon: res.data.couponList,
+          partners:res.data.partnerList
         });
       }
     });
